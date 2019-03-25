@@ -8,18 +8,15 @@ set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
-
 set hls
 set showmatch
 set ruler
-
 "set autowrite
 set expandtab
 set smarttab
-
-"indent 允许使用退格删除缩进
-"eol    允许在行开头使用退格合并上下两行
-"start  允许使用退格删除当前插入前的字符
+" indent 允许使用退格删除缩进
+" eol    允许在行开头使用退格合并上下两行
+" start  允许使用退格删除当前插入前的字符
 set backspace=indent,eol,start
 
 """"""""""""""""""""""""
@@ -36,35 +33,36 @@ map <C-m> :cprevious<CR>
 """"""""""""""""""""""""
 set cursorline    " 设置高亮行
 "set cursorcolumn " 设置高亮列
+"
 highlight CursorLine   cterm=NONE guibg=NONE guifg=NONE ctermbg=lightgray ctermfg=black
 highlight CursorColumn cterm=NONE guibg=NONE guifg=NONE ctermbg=lightgray ctermfg=black
 
 if (exists('+colorcolumn'))
     set colorcolumn=80
-    highlight ColorColumn ctermbg=9
+    highlight ColorColumn ctermbg=0
 endif
-
 
 "molokai conf
 "let g:rehash256 = 1
 "let g:molokai_original = 1
 "colorscheme molokai
+"let g:ycm_keep_logfiles = 1
+"let g:ycm_log_level = 'debug'
 
 """"""""""""""""""""""""
 "   Vim-plug   "
 """"""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
-Plug 'altercation/vim-colors-solarized'
-Plug 'fatih/molokai'
+"Plug 'fatih/molokai'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'Shougo/unite.vim'
 Plug 'rking/ag.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'nvie/vim-flake8'
 call plug#end()
 
 """"""""""""""""""""""""
@@ -74,12 +72,12 @@ let g:go_def_mode = 'guru'
 "let g:go_addtags_transform = 'camelcase'
 let g:go_autodetect_gopath = 1
 let g:go_info_mode = 'guru'
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
+"let g:go_highlight_types = 1
+"let g:go_highlight_fields = 1
+"let g:go_highlight_functions = 1
+"let g:go_highlight_function_calls = 1
+"let g:go_highlight_extra_types = 1
+"let g:go_highlight_generate_tags = 1
 let g:go_metalinter_enabled = ['vet', 'golint', 'deadcode', 'errcheck', 'dupl', 'goconst', 'gocyclo', 'gosec', 'gotype', 'gotypex', 'ineffassign', 'interfacer', 'maligned', 'megacheck', 'misspell', 'structcheck', 'unconvert', 'varcheck', 'vetshadow']
 
 augroup go
@@ -116,16 +114,6 @@ function! s:build_go_files()
   endif
 endfunction
 
-
-""""""""""""""""""""""""
-"   python plugin    "
-""""""""""""""""""""""""
-let g:flake8_show_in_file=1
-autocmd BufWritePost *.py call Flake8()
-set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
-set errorformat=%f:%l:\ %m
-
-
 """"""""""""""""""""""""
 "   unite plugin    "
 """"""""""""""""""""""""
@@ -157,3 +145,4 @@ try
     colorscheme solarized
 catch
 endtry
+
